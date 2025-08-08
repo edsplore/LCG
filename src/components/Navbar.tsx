@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import logo from '../assets/LCG_Logo.avif';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,10 +28,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center group">
-            <img 
-              src="/src/assets/LCG_Logo.avif" 
-              alt="LexComp Global Logo" 
-             className="h-24 w-auto transition-transform duration-300 group-hover:scale-110"
+            <img
+              src={logo}
+              alt="LexComp Global Logo"
+              className="h-24 w-auto transition-transform duration-300 group-hover:scale-110"
             />
           </Link>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, Shield, FileCheck, Users, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import banner from '../assets/lcg-banner.jpg';
 
 const Home = () => {
 
@@ -10,7 +11,7 @@ const Home = () => {
       <div 
         className="relative min-h-screen flex items-center justify-center bg-no-repeat bg-cover bg-center bg-fixed"
         style={{
-          backgroundImage: `url('/src/assets/lcg-banner.jpg')`
+          backgroundImage: `url(${banner})`
         }}
       >
         
