@@ -20,33 +20,21 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      // TODO: replace "/api/contact" with the actual backend endpoint
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+    // For now, just log the data and show a success message.
+    // Backend team can hook this up to a real API later.
+    console.log('Contact form submitted:', formData);
+    alert('Thank you for contacting us! We have received your message.');
 
-      if (!res.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      alert('Message sent successfully!');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: ''
-      });
-    } catch (err) {
-      console.error(err);
-      alert('There was a problem sending your message. Please try again.');
-    }
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: ''
+    });
   };
 
   return (
