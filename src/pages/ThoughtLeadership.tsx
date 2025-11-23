@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Calendar, User, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -45,56 +45,94 @@ const BlogCard = ({ post }: { post: BlogPost }) => (
 );
 
 const ThoughtLeadership = () => {
+  // TODO: move this array into src/data/thoughtLeadership.ts later
   const blogPosts: BlogPost[] = [
     {
       title: "The Future of Privacy in the Age of AI",
-      excerpt: "Exploring the intersection of artificial intelligence and data privacy regulations, and what it means for businesses.",
+      excerpt:
+        "Exploring the intersection of artificial intelligence and data privacy regulations, and what it means for businesses.",
       date: "March 15, 2024",
       author: "Nidhi Sodhani",
       tags: ["AI", "Privacy", "GDPR"],
-      imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80"
+      imageUrl:
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80",
     },
     {
       title: "Navigating Global Data Protection Laws",
-      excerpt: "A comprehensive guide to understanding and implementing international data protection requirements.",
+      excerpt:
+        "A comprehensive guide to understanding and implementing international data protection requirements.",
       date: "March 10, 2024",
       author: "Legal Team",
       tags: ["Compliance", "Global", "Data Protection"],
-      imageUrl: "https://images.unsplash.com/photo-1576267423048-15c0040fec78?auto=format&fit=crop&q=80"
+      imageUrl:
+        "https://images.unsplash.com/photo-1576267423048-15c0040fec78?auto=format&fit=crop&q=80",
     },
     {
       title: "Strategic IT Procurement in 2024",
-      excerpt: "Best practices for optimizing your IT procurement process in an evolving technological landscape.",
+      excerpt:
+        "Best practices for optimizing your IT procurement process in an evolving technological landscape.",
       date: "March 5, 2024",
       author: "Procurement Team",
       tags: ["Procurement", "Strategy", "IT"],
-      imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80"
+      imageUrl:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
     },
     {
       title: "ESG Compliance: A Modern Necessity",
-      excerpt: "Understanding the importance of Environmental, Social, and Governance compliance in today's business world.",
+      excerpt:
+        "Understanding the importance of Environmental, Social, and Governance compliance in today's business world.",
       date: "March 1, 2024",
       author: "ESG Team",
       tags: ["ESG", "Sustainability", "Compliance"],
-      imageUrl: "https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&q=80"
+      imageUrl:
+        "https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&q=80",
     },
     {
       title: "Cybersecurity Risk Management",
-      excerpt: "Essential strategies for managing and mitigating cybersecurity risks in your organization.",
+      excerpt:
+        "Essential strategies for managing and mitigating cybersecurity risks in your organization.",
       date: "February 25, 2024",
       author: "Security Team",
       tags: ["Cybersecurity", "Risk", "Management"],
-      imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80"
+      imageUrl:
+        "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80",
     },
     {
       title: "Digital Transformation Compliance",
-      excerpt: "Ensuring compliance while undergoing digital transformation initiatives.",
+      excerpt:
+        "Ensuring compliance while undergoing digital transformation initiatives.",
       date: "February 20, 2024",
       author: "Digital Team",
       tags: ["Digital", "Transformation", "Compliance"],
-      imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80"
-    }
+      imageUrl:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80",
+    },
   ];
+
+  // Newsletter state + handler
+  const [email, setEmail] = useState('');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      // TODO: replace '/api/newsletter' with real endpoint from backend
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Subscription failed');
+      }
+
+      alert('Subscribed successfully!');
+      setEmail('');
+    } catch (err) {
+      console.error(err);
+      alert('There was a problem subscribing. Please try again.');
+    }
+  };
 
   return (
     <div className="min-h-screen pt-32">
@@ -127,11 +165,14 @@ const ThoughtLeadership = () => {
             <p className="text-lg text-gray-600 mb-8">
               Subscribe to our newsletter for the latest insights and updates.
             </p>
-            <form className="max-w-md mx-auto">
+            <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
               <div className="flex gap-4">
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="flex-1 px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
