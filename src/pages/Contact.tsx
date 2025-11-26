@@ -10,7 +10,9 @@ const Contact = () => {
     message: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -20,9 +22,20 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  }
+
+    // For now, just log the data and show a success message.
+    // Backend team can hook this up to a real API later.
+    console.log('Contact form submitted:', formData);
+    alert('Thank you for contacting us! We have received your message.');
+
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: ''
+    });
+  };
 
   return (
     <div className="min-h-screen pt-32">
@@ -47,37 +60,45 @@ const Contact = () => {
           {/* Contact Information */}
           <div>
             <h2 className="text-3xl font-bold mb-8">
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Get in Touch</span>
+              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                Get in Touch
+              </span>
             </h2>
             <div className="space-y-8">
               <div className="bg-white rounded-xl shadow-lg p-6 flex items-start group hover:shadow-xl transition-shadow cursor-pointer">
                 <Mail className="h-6 w-6 text-green-600 mt-1 transform group-hover:scale-110 transition-transform" />
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Email</h3>
-                  <a 
-                    href="mailto:business@lexcompglobal.com" 
+                  <a
+                    href="mailto:business@lexcompglobal.com"
                     className="text-blue-600 hover:text-green-600 transition-colors underline cursor-pointer select-text"
                     onClick={(e) => e.stopPropagation()}
                   >
                     business@lexcompglobal.com
                   </a>
-                  <p className="text-sm text-gray-500 mt-1 select-text">Click to email or select to copy</p>
+                  <p className="text-sm text-gray-500 mt-1 select-text">
+                    Click to email or select to copy
+                  </p>
                 </div>
               </div>
+
               <div className="bg-white rounded-xl shadow-lg p-6 flex items-start group hover:shadow-xl transition-shadow cursor-pointer">
                 <Phone className="h-6 w-6 text-green-600 mt-1 transform group-hover:scale-110 transition-transform" />
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Phone</h3>
-                  <a 
-                    href="tel:+16503462173" 
+                  <a
+                    href="tel:+16503462173"
                     className="text-blue-600 hover:text-green-600 transition-colors underline cursor-pointer select-text"
                     onClick={(e) => e.stopPropagation()}
                   >
                     +1 (650) 346-2173
                   </a>
-                  <p className="text-sm text-gray-500 mt-1 select-text">Click to call or select to copy</p>
+                  <p className="text-sm text-gray-500 mt-1 select-text">
+                    Click to call or select to copy
+                  </p>
                 </div>
               </div>
+
               <div className="bg-white rounded-xl shadow-lg p-6 flex items-start group hover:shadow-xl transition-shadow">
                 <MapPin className="h-6 w-6 text-green-600 mt-1 transform group-hover:scale-110 transition-transform" />
                 <div className="ml-4">
@@ -95,11 +116,16 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-8">
-              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Send Us a Message</span>
+              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                Send Us a Message
+              </span>
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Full Name *
                 </label>
                 <input
@@ -115,7 +141,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Email Address *
                 </label>
                 <input
@@ -131,7 +160,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Phone Number
                 </label>
                 <input
@@ -146,7 +178,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Company Name
                 </label>
                 <input
@@ -161,7 +196,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Message *
                 </label>
                 <textarea
