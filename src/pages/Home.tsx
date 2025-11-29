@@ -21,7 +21,7 @@ const Home = () => {
               Driving Business Excellence
             </h1>
             <p className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto animate-slide-up drop-shadow-lg bg-black/30 backdrop-blur-sm px-6 py-3 rounded-lg" style={{ textShadow: '1px 2px 4px rgba(0, 0, 0, 0.7)' }}>
-              Welcome to LexComp Global – Your Partner in Compliance, Procurement, & Risk Management
+              Welcome to LexComp Global – Your Partner in Legal Services, Strategic Sourcing & Procurement, Compliance & Cost Optimization and Commercial Negotiations
             </p>
             <Link
               to="/contact"

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Pricing from './pages/Pricing';
 import ThoughtLeadership from './pages/ThoughtLeadership';
+import BlogPostDetail from './pages/BlogPostDetail'; // ✅ new import
 import About from './pages/About';
 import Contact from './pages/Contact';
 
@@ -20,6 +21,11 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/thought-leadership" element={<ThoughtLeadership />} />
+            {/* ✅ new dynamic route for Read More */}
+            <Route
+              path="/thought-leadership/:slug"
+              element={<BlogPostDetail />}
+            />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
